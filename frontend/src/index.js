@@ -4,6 +4,7 @@ import {createRoot} from 'react-dom/client';
 import './index.css';
 import Root from "pages"
 import {BrowserRouter}  from 'react-router-dom';
+// import PostList from 'components/PostList';
 // import reportWebVitals from './reportWebVitals';
 
 // ReactDOM.render(
@@ -19,6 +20,7 @@ const root = createRoot(document.getElementById("root"));
 root.render(
   <BrowserRouter>
     <Root/>
+    {/* <PostList /> */}
   </BrowserRouter>,
 );
 

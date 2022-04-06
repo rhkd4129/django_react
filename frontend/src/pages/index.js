@@ -3,7 +3,7 @@ import AppLayout from "components/App.Layout";
 import { Route ,Routes } from "react-router-dom";
 import About from "./About";
 import Home from "./Home";
-import AccountsRoutes  from "./accounts";
+import AccountsRoutes from "./accounts";
 // import PostList from "components/PostList";
 // import Post from "components/Post";
 
@@ -15,7 +15,7 @@ function Root(){
           <Routes>
               <Route  path="/" element={<Home/>} />
               <Route  path="/about" element={<About />} />
-              <Route path="/accounts" element={<AccountsRoutes />} />
+              <Route path="/accounts/*" element={<AccountsRoutes />} />
           </Routes>
         </AppLayout>
 
