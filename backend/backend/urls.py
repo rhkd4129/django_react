@@ -1,3 +1,5 @@
+# from rest_framework_jwt.views import obtain_jwt_token
+
 from django.contrib import admin
 from django.urls import path,include
 from django.conf import settings
@@ -6,6 +8,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('accounts/', include('accounts.urls')),
     path('', include('instagram.urls')),
+    # path('token/', obtain_jwt_token),
 ]
 
 if settings.DEBUG:
@@ -15,3 +18,5 @@ if settings.DEBUG:
     urlpatterns +=[
         path("__debug__/",include(debug_toolbar.urls)),
     ]
+#...
+

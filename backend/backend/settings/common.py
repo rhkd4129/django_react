@@ -12,7 +12,7 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 import os
 from pathlib import Path
 from os.path import abspath,dirname,join
-
+from datetime import timedelta
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 # BASE_DIR = Path(__file__).resolve().parent.parent
 BASE_DIR  = dirname(dirname(dirname(abspath(__file__))))
@@ -52,7 +52,7 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
-     'corsheaders.middleware.CorsMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -146,18 +146,31 @@ MEDIA_ROOT = os.path.join(BASE_DIR,'media')
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+# REST_FRAMEWORK={
 
-REST_FRAMEWORK={
+#      'DEFAULT_PERMISSION_CLASSES': ['rest_framework.permissions.AllowAny',],#. IsAuthenticated
 
-     'DEFAULT_PERMISSION_CLASSES': ['rest_framework.permissions.AllowAny',],#. IsAuthenticated
-
-}
-# REST_FRAMEWORK = {
-#     'DEFAULT_AUTHENTICATION_CLASSES': (
-#         'rest_framework.authentication.BasicAuthentication',
-#         'rest_framework.authentication.SessionAuthentication',
-#     ),
-   
 # }
+
+REST_FRAMEWORK = {
+    #IsAuthenticated
+    
+    'DEFAULT_PERMISSION_CLASSES': ['rest_framework.permissions.AllowAny',],
+    # 'DEFAULT_AUTHENTICATION_CLASSES': [ 
+    #     'rest_framework_jwt.authentication.JSONWebTokenAuthentication',
+    #     'rest_framework.authentication.SessionAuthentication',],
+}
+
+
+
+JWT_AUTH = {
+    "JWT_SECRET_KEY": SECRET_KEY,  # FIXME: JWT_SECRET_KEY
+    "JWT_ALGORITHM": "HS256",
+    "JWT_ALLOW_REFRESH": True,
+    "JWT_EXPIRATION_DELTA": timedelta(days=7),
+    "JWT_REFRESH_EXPIRATION_DELTA": timedelta(days=28),
+}
+
+
 # permissions.IsAuthenticated   인증된요청에 한해서 뷰 호출 허용
 # IsAdminUser Staff 인증 요청에 한해서 뷰호출 허용
